@@ -13,7 +13,7 @@ MIN_SIZE="${SIZE_FILTER}"
 
 # 排除文件类型，仅 BT 多文件下载时有效，用于过滤无用文件。排除的文件将被删除，不会上传。
 # Exclude file types, valid only when downloading multiple BT files, used to filter useless files. Excluded files will be deleted and will not be uploaded.
-#EXCLUDE_FILE='html,url,lnk,txt,jpg,png'
+EXCLUDE_FILE='html,url,lnk,txt,jpg,png,nfo,torrent,jpeg,exe'
 
 ## 高级设置 advanced settings ##
 
@@ -83,7 +83,7 @@ UPLOAD_FILE() {
             echo -e "$(date +"%m/%d %H:%M:%S") ${ERROR} Upload failed! Retry ${RETRY}/${RETRY_NUM} ..."
             echo
         )
-        gclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}"
+        gclone copy -v "${UPLOAD_PATH}" "${REMOTE_PATH}" $ARG
         RCLONE_EXIT_CODE=$?
 		RCLONE_EXIT_CODE_2=0
 		if [ -n "${RCLONE_DESTINATION_2}" ]; then
